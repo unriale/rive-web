@@ -14,7 +14,7 @@ export default function App() {
     { id: 'use-cases', label: 'Use Cases' },
   ]
 
-  const scrollToSection = (id) => {
+  const scrollToSection = (id: string) => {
     const el = document.getElementById(id)
     if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' })
   }
@@ -212,7 +212,17 @@ export default function App() {
   )
 }
 
-function Section({ id, eyebrow, title, children }) {
+function Section({
+  id,
+  eyebrow,
+  title,
+  children,
+}: {
+  id: string
+  eyebrow?: string
+  title?: string
+  children: React.ReactNode
+}) {
   return (
     <section
       id={id}
@@ -239,19 +249,25 @@ function Section({ id, eyebrow, title, children }) {
   )
 }
 
-function CopyBlock({ lead, paragraphs }) {
+function CopyBlock({
+  lead,
+  paragraphs,
+}: {
+  lead: string
+  paragraphs: string[]
+}) {
   return (
     <div>
       <p className="text-lg sm:text-2xl font-medium leading-8 sm:leading-9 text-white">{lead}</p>
       <div className="mt-5 sm:mt-6 space-y-4 text-white/70 leading-7 sm:leading-8 text-sm sm:text-lg">
-        {paragraphs.map((p) => (
+        {paragraphs.map((p: string) => (
           <p key={p}>{p}</p>
         ))}
       </div>
     </div>
   )
 }
-
+    
 function UseCasesTabs() {
   const tabs = [
     {
@@ -363,7 +379,7 @@ function UseCasesTabs() {
           <div className="w-full h-[320px] sm:h-[460px] lg:h-[600px] rounded-[1.25rem] sm:rounded-[1.5rem] overflow-hidden border border-white/10 bg-black/50">
             <CustomRive className="w-full h-full" />
           </div>
-        ) : activeItem.source2 ? (
+        ) : 'source2' in activeItem ? (
           <div className="grid grid-cols-1 md:grid-cols-[1fr_260px] lg:grid-cols-[1fr_300px] gap-4 items-center h-full w-full">
             <a
               href={activeItem.url}
@@ -395,7 +411,7 @@ function UseCasesTabs() {
               />
             </a>
           </div>
-        ) : (
+        ) : 'source' in activeItem && 'url' in activeItem ? (
           <a
             href={activeItem.url}
             target="_blank"
@@ -409,14 +425,14 @@ function UseCasesTabs() {
               className="w-full h-auto object-contain cursor-pointer max-h-[320px] sm:max-h-[420px] lg:max-h-[600px] lg:min-h-[600px]"
             />
           </a>
-        )}
+        ) : null}
 
         {activeTab === 'custom' ? (
           <div className="mt-5 max-w-2xl rounded-2xl border border-white/10 bg-white/[0.03] px-4 sm:px-5 py-4 text-left">
             <p className="text-sm font-medium text-white mb-3">Custom avatar creator</p>
             <ul className="space-y-2 text-sm text-white/65">
               <li>
-                • File size of <span className="text-white">.riv</span>:{' '}
+                • File size of <span className="text-white">.riv</span>{' '}
                 <span className="text-white">146KB</span> (1 audio, big state machine, assets)
               </li>
               <li>
@@ -427,18 +443,22 @@ function UseCasesTabs() {
               <li className="pl-4">export and code integration: ~15m</li>
             </ul>
           </div>
-        ) : (
+        ) : 'description' in activeItem ? (
           <p className="mt-4 text-sm sm:text-base text-white/60 max-w-3xl leading-6 sm:leading-7">
-            {'description' in activeItem ? activeItem.description : ''}
+            {activeItem.description}
           </p>
-        )}
+        ) : null}
       </div>
     </div>
   )
 }
 
-function FeatureGrid({ items }) {
-  const icons = {
+function FeatureGrid({
+  items,
+}: {
+  items: [string, string][]
+}) {
+  const icons: Record<string, string> = {
     Editor: '✏️',
     '.riv file': '📦',
     Runtime: '⚙️',
@@ -518,13 +538,11 @@ function InterpolationTabs() {
     { key: 'cubic', label: 'Cubic', type: 'gif', src: '/cubic.gif' },
     { key: 'hold', label: 'Hold', type: 'gif', src: '/hold.gif' },
     { key: 'rive', label: 'All 3 combined', type: 'rive', src: '/interpolation.riv' },
-    // { key: 'something', label: 'Secret', type: 'rive', src: '/something.riv' },
   ] as const
 
   const [activeTab, setActiveTab] = React.useState<
-    'linear' | 'cubic' | 'hold' | 'rive' | 'something'
+    'linear' | 'cubic' | 'hold' | 'rive'
   >('linear')
-  const [showSecretTab, setShowSecretTab] = React.useState(false)
 
   const activeItem = tabs.find((tab) => tab.key === activeTab)!
 
@@ -533,40 +551,30 @@ function InterpolationTabs() {
     autoplay: activeTab === 'rive',
   })
 
-  const { RiveComponent: SomethingRive } = useRive({
-    src: '/something.riv',
-    autoplay: activeTab === 'something',
-    stateMachines: 'State Machine 1',
-  })
-
   return (
-    <div className="rounded-[2rem] border border-white/10 bg-white/[0.03] p-4 sm:p-5 min-h-[280px] sm:min-h-[320px]">
-      <div
-        className="-mx-1 mb-5 overflow-x-auto pb-1 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
-        onMouseEnter={() => setShowSecretTab(true)}
-      >
+    <div className="rounded-[1.25rem] sm:rounded-[2rem] border border-white/10 bg-white/[0.03] p-4 sm:p-5 min-h-[280px] sm:min-h-[320px]">
+      
+      {/* Tabs */}
+      <div className="-mx-1 mb-5 overflow-x-auto pb-1 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
         <div className="flex w-max flex-nowrap sm:flex-wrap gap-2 px-1">
-          {tabs
-            .filter((tab) => tab.key !== 'something' || showSecretTab)
-            .map((tab) => (
-              <button
-                key={tab.key}
-                onClick={() => setActiveTab(tab.key)}
-                className={`shrink-0 rounded-full border px-3 py-1.5 text-[11px] sm:text-xs transition ${
-                  activeTab === tab.key
-                    ? 'border-white/40 bg-white text-black'
-                    : tab.key === 'something'
-                    ? 'border-white/10 text-white/10 italic animate-pulse hover:border-white/40 hover:text-white'
-                    : 'border-white/15 text-white/75 hover:border-white/40 hover:text-white'
-                }`}
-              >
-                {tab.key === 'something' ? '...?' : tab.label}
-              </button>
-            ))}
+          {tabs.map((tab) => (
+            <button
+              key={tab.key}
+              onClick={() => setActiveTab(tab.key)}
+              className={`shrink-0 rounded-full border px-3 py-1.5 text-[11px] sm:text-xs transition ${
+                activeTab === tab.key
+                  ? 'border-white/40 bg-white text-black'
+                  : 'border-white/15 text-white/75 hover:border-white/40 hover:text-white'
+              }`}
+            >
+              {tab.label}
+            </button>
+          ))}
         </div>
       </div>
 
-      <div className="rounded-[1.25rem] sm:rounded-[1.5rem] border border-white/10 bg-black/40 min-h-[220px] sm:min-h-[300px] overflow-hidden flex items-center justify-center">
+      {/* Content */}
+      <div className="rounded-[1rem] sm:rounded-[1.5rem] border border-white/10 bg-black/40 min-h-[220px] sm:min-h-[300px] overflow-hidden flex items-center justify-center">
         {activeItem.type === 'gif' ? (
           <img
             key={activeItem.src}
@@ -574,13 +582,9 @@ function InterpolationTabs() {
             alt={`${activeItem.label} interpolation`}
             className="w-full h-full object-contain"
           />
-        ) : activeTab === 'rive' ? (
-          <div className="w-full h-[260px] sm:h-[360px] lg:h-[420px]">
-            <InterpolationRive className="w-full h-full" />
-          </div>
         ) : (
           <div className="w-full h-[260px] sm:h-[360px] lg:h-[420px]">
-            <SomethingRive className="w-full h-full" />
+            <InterpolationRive className="w-full h-full" />
           </div>
         )}
       </div>
