@@ -80,7 +80,7 @@ export default function App() {
           <div className="grid lg:grid-cols-[0.95fr_1.05fr] gap-6 sm:gap-8 items-start">
             <div className="rounded-[2rem] border border-white/10 bg-white/[0.03] p-3 sm:p-4 sm:p-5">
               <img
-                src="/rive_pipeline.png"
+                src={`${import.meta.env.BASE_URL}rive_pipeline.png`}
                 alt="Rive end-to-end pipeline"
                 className="w-full h-auto rounded-[1.5rem] object-contain"
               />
@@ -102,7 +102,7 @@ export default function App() {
             <div className="rounded-[2rem] border border-white/10 bg-white/[0.03] p-3 sm:p-4 sm:p-5">
               <div className="aspect-video rounded-[1.5rem] overflow-hidden bg-black flex items-center justify-center">
                 <img
-                  src="/rive_history.gif"
+                  src={`${import.meta.env.BASE_URL}rive_history.gif`}
                   alt="Rive history animation"
                   className="w-full h-full object-cover"
                 />
@@ -190,7 +190,7 @@ export default function App() {
 
                 <div className="relative z-10 flex h-14 w-14 sm:h-16 sm:w-16 lg:h-20 lg:w-20 items-center justify-center transition-all duration-500 group-hover:scale-110 group-hover:-translate-y-1">
                   <img
-                    src={`/icons/${item.toLowerCase().replace(/ /g, '-')}.svg`}
+                    src={`${import.meta.env.BASE_URL}icons/${item.toLowerCase().replace(/ /g, '-')}.svg`}
                     alt={item}
                     className="w-full h-full object-contain opacity-90 group-hover:opacity-100"
                   />
@@ -273,8 +273,8 @@ function UseCasesTabs() {
     {
       key: 'duolingo',
       label: 'Duolingo',
-      source: '/usecase/duolingo.png',
-      source2: '/usecase/lily.mp4',
+      source: `${import.meta.env.BASE_URL}usecase/duolingo.png`,
+      source2: `${import.meta.env.BASE_URL}usecase/lily.mp4`,
       url: 'https://blog.duolingo.com/world-character-visemes/',
       description:
         'To make Lily feel expressive and responsive, the animation team relied on the Rive State Machine, a visual system that lets animations transition fluidly based on inputs.',
@@ -282,7 +282,7 @@ function UseCasesTabs() {
     {
       key: 'brilliant',
       label: 'Brilliant',
-      source: '/usecase/brilliant.avif',
+      source: `${import.meta.env.BASE_URL}usecase/brilliant.avif`,
       url: 'https://rive.app/blog/how-brilliant-org-motivates-learners-with-rive-animations',
       description:
         'Brilliant uses animation to make learning feel rewarding, guiding attention, celebrating progress, and turning abstract concepts into something more intuitive.',
@@ -290,8 +290,8 @@ function UseCasesTabs() {
     {
       key: 'figma',
       label: 'Figma',
-      source: '/usecase/figma.avif',
-      source2: '/usecase/figma_rive.mp4',
+      source: `${import.meta.env.BASE_URL}usecase/figma.avif`,
+      source2: `${import.meta.env.BASE_URL}usecase/figma_rive.mp4`,
       url: 'https://rive.app/blog/figma-s-new-homepage-is-full-of-rive-animations',
       description:
         'Figma uses Rive to bring the homepage to life with motion that feels polished, interactive, and tightly integrated with the product’s visual identity.',
@@ -299,7 +299,7 @@ function UseCasesTabs() {
     {
       key: 'spotify',
       label: 'Spotify',
-      source: '/usecase/spotify.webp',
+      source: `${import.meta.env.BASE_URL}usecase/spotify.webp`,
       url: 'https://rive.app/blog/spotify-used-rive-for-spotify-wrapped-2025',
       description:
         'Spotify uses Rive for high-impact campaign moments, where motion, branding, and responsiveness need to feel dynamic across many screens and devices.',
@@ -307,8 +307,8 @@ function UseCasesTabs() {
     {
       key: 'sentry',
       label: 'Sentry',
-      source: '/usecase/sentry.webp',
-      source2: '/usecase/sentry.mp4',
+      source: `${import.meta.env.BASE_URL}usecase/sentry.webp`,
+      source2: `${import.meta.env.BASE_URL}usecase/sentry.mp4`,
       url: 'https://sentry.io/welcome/',
       description:
         'Sentry uses motion to make a technical product feel more approachable, adding personality without losing clarity or speed.',
@@ -316,8 +316,8 @@ function UseCasesTabs() {
     {
       key: 'notion',
       label: 'Notion',
-      source: '/usecase/notion.webp',
-      source2: '/usecase/notion.mp4',
+      source: `${import.meta.env.BASE_URL}usecase/notion.webp`,
+      source2: `${import.meta.env.BASE_URL}usecase/notion.mp4`,
       url: 'https://www.fastcompany.com/91192119/notions-new-animated-ai-assistant-looks-more-new-yorker-than-clippy',
       description:
         'Notion uses animation to give its AI assistant more character, making the experience feel friendlier, clearer, and more memorable.',
@@ -325,8 +325,8 @@ function UseCasesTabs() {
     {
       key: 'intercom',
       label: 'Intercom',
-      source: '/usecase/intercom.avif',
-      source2: '/usecase/intercom_site.mp4',
+      source: `${import.meta.env.BASE_URL}usecase/intercom.avif`,
+      source2: `${import.meta.env.BASE_URL}usecase/intercom_site.mp4`,
       url: 'https://rive.app/blog/intercom-s-product-animation-evolution-embracing-rive',
       description:
         'Intercom uses Rive to evolve product animation from static decoration into interactive storytelling that better supports the product experience.',
@@ -335,7 +335,7 @@ function UseCasesTabs() {
       key: 'custom',
       label: 'Custom',
       type: 'rive',
-      src: '/usecase/avatar_creation.riv',
+      src: `${import.meta.env.BASE_URL}usecase/avatar_creation.riv`,
     },
   ] as const
 
@@ -346,7 +346,7 @@ function UseCasesTabs() {
   const activeItem = tabs.find((tab) => tab.key === activeTab)!
 
   const { RiveComponent: CustomRive } = useRive({
-    src: '/usecase/avatar_creation.riv',
+    src: `${import.meta.env.BASE_URL}usecase/avatar_creation.riv`,
     autoplay: activeTab === 'custom',
     autoBind: true,
     stateMachines: 'MainArtboardStateMachine',
@@ -534,10 +534,10 @@ function Timeline() {
 
 function InterpolationTabs() {
   const tabs = [
-    { key: 'linear', label: 'Linear', type: 'gif', src: '/linear.gif' },
-    { key: 'cubic', label: 'Cubic', type: 'gif', src: '/cubic.gif' },
-    { key: 'hold', label: 'Hold', type: 'gif', src: '/hold.gif' },
-    { key: 'rive', label: 'All 3 combined', type: 'rive', src: '/interpolation.riv' },
+    { key: 'linear', label: 'Linear', type: 'gif', src: `${import.meta.env.BASE_URL}linear.gif` },
+    { key: 'cubic', label: 'Cubic', type: 'gif', src: `${import.meta.env.BASE_URL}cubic.gif` },
+    { key: 'hold', label: 'Hold', type: 'gif', src: `${import.meta.env.BASE_URL}hold.gif` },
+    { key: 'rive', label: 'All 3 combined', type: 'rive', src: `${import.meta.env.BASE_URL}interpolation.gif` },
   ] as const
 
   const [activeTab, setActiveTab] = React.useState<
@@ -594,11 +594,11 @@ function InterpolationTabs() {
 
 function StateMachineTabs() {
   const tabs = [
-    { key: 'example', label: 'Example', type: 'rive', src: '/state_machine.riv' },
-    { key: 'machine', label: 'State machine', type: 'gif', src: '/state_machine_1.gif' },
-    { key: 'beginner', label: 'Beginner', type: 'gif', src: '/state_machine_2.gif' },
-    { key: 'intermediate', label: 'Intermediate', type: 'gif', src: '/state_machine_3.gif' },
-    { key: 'expert', label: 'Expert', type: 'gif', src: '/state_machine_4.gif' },
+    { key: 'example', label: 'Example', type: 'rive', src: `${import.meta.env.BASE_URL}usecase/state_machine.riv` },
+    { key: 'machine', label: 'State machine', type: 'gif', src: `${import.meta.env.BASE_URL}usecase/state_machine_1.gif` },
+    { key: 'beginner', label: 'Beginner', type: 'gif', src: `${import.meta.env.BASE_URL}usecase/state_machine_2.gif` },
+    { key: 'intermediate', label: 'Intermediate', type: 'gif', src: `${import.meta.env.BASE_URL}usecase/state_machine_3.gif`},
+    { key: 'expert', label: 'Expert', type: 'gif', src: `${import.meta.env.BASE_URL}usecase/state_machine_4.gif` },
   ] as const
 
   const [activeTab, setActiveTab] = React.useState<

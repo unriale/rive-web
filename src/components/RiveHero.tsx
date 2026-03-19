@@ -2,7 +2,7 @@ import { useRive } from '@rive-app/react-canvas'
 
 export function RiveHero() {
   const { RiveComponent } = useRive({
-    src: '/eddy_interactions.riv',
+    src: `${import.meta.env.BASE_URL}eddy_interactions.riv`,
     autoplay: true,
     stateMachines: 'Reactive Eddy',
   })
