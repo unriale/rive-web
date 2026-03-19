@@ -291,7 +291,7 @@ function UseCasesTabs() {
     {
       key: 'sentry',
       label: 'Sentry',
-      source: '/usecase/sentry.gif',
+      source: '/usecase/sentry.webp',
       source2: '/usecase/sentry.mp4',
       url: 'https://sentry.io/welcome/',
       description:
