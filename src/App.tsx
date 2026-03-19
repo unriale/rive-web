@@ -429,7 +429,24 @@ function UseCasesTabs() {
 
         {activeTab === 'custom' ? (
           <div className="mt-5 max-w-2xl rounded-2xl border border-white/10 bg-white/[0.03] px-4 sm:px-5 py-4 text-left">
-            <p className="text-sm font-medium text-white mb-3">Custom avatar creator</p>
+            <a
+              href="https://rive.app/marketplace/26912-50579-avatars/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group inline-flex items-center gap-2 text-sm font-medium text-white mb-3 hover:text-white/80 transition"
+            >
+              Custom avatar creator
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                className="w-3.5 h-3.5 opacity-70 group-hover:opacity-100"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path strokeWidth={2} strokeLinecap="round" strokeLinejoin="round" d="M14 3h7m0 0v7m0-7L10 14" />
+                <path strokeWidth={2} strokeLinecap="round" strokeLinejoin="round" d="M5 5v14h14" />
+              </svg>
+            </a>
             <ul className="space-y-2 text-sm text-white/65">
               <li>
                 • File size of <span className="text-white">.riv</span>{' '}
