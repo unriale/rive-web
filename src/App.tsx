@@ -547,7 +547,7 @@ function InterpolationTabs() {
   const activeItem = tabs.find((tab) => tab.key === activeTab)!
 
   const { RiveComponent: InterpolationRive } = useRive({
-    src: '/interpolation.riv',
+    src: `${import.meta.env.BASE_URL}interpolation.riv`,
     autoplay: activeTab === 'rive',
   })
 
