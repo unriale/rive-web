@@ -537,7 +537,7 @@ function InterpolationTabs() {
     { key: 'linear', label: 'Linear', type: 'gif', src: `${import.meta.env.BASE_URL}linear.gif` },
     { key: 'cubic', label: 'Cubic', type: 'gif', src: `${import.meta.env.BASE_URL}cubic.gif` },
     { key: 'hold', label: 'Hold', type: 'gif', src: `${import.meta.env.BASE_URL}hold.gif` },
-    { key: 'rive', label: 'All 3 combined', type: 'rive', src: `${import.meta.env.BASE_URL}interpolation.gif` },
+    { key: 'rive', label: 'All 3 combined', type: 'rive', src: `${import.meta.env.BASE_URL}interpolation.riv` },
   ] as const
 
   const [activeTab, setActiveTab] = React.useState<
@@ -594,11 +594,11 @@ function InterpolationTabs() {
 
 function StateMachineTabs() {
   const tabs = [
-    { key: 'example', label: 'Example', type: 'rive', src: `${import.meta.env.BASE_URL}usecase/state_machine.riv` },
-    { key: 'machine', label: 'State machine', type: 'gif', src: `${import.meta.env.BASE_URL}usecase/state_machine_1.gif` },
-    { key: 'beginner', label: 'Beginner', type: 'gif', src: `${import.meta.env.BASE_URL}usecase/state_machine_2.gif` },
-    { key: 'intermediate', label: 'Intermediate', type: 'gif', src: `${import.meta.env.BASE_URL}usecase/state_machine_3.gif`},
-    { key: 'expert', label: 'Expert', type: 'gif', src: `${import.meta.env.BASE_URL}usecase/state_machine_4.gif` },
+    { key: 'example', label: 'Example', type: 'rive', src: `${import.meta.env.BASE_URL}state_machine.riv` },
+    { key: 'machine', label: 'State machine', type: 'gif', src: `${import.meta.env.BASE_URL}state_machine_1.gif` },
+    { key: 'beginner', label: 'Beginner', type: 'gif', src: `${import.meta.env.BASE_URL}state_machine_2.gif` },
+    { key: 'intermediate', label: 'Intermediate', type: 'gif', src: `${import.meta.env.BASE_URL}state_machine_3.gif`},
+    { key: 'expert', label: 'Expert', type: 'gif', src: `${import.meta.env.BASE_URL}state_machine_4.gif` },
   ] as const
 
   const [activeTab, setActiveTab] = React.useState<
@@ -608,7 +608,7 @@ function StateMachineTabs() {
   const activeItem = tabs.find((tab) => tab.key === activeTab)!
 
   const { RiveComponent: StateMachineRive } = useRive({
-    src: '/state_machine.riv',
+    src: `${import.meta.env.BASE_URL}state_machine.riv`,
     autoplay: activeTab === 'example',
     stateMachines: 'State Machine 1',
   })
